@@ -45,7 +45,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isOperand)
                 {
-                    boolean
+                    boolean lastIsOperand = Arrays.asList(operands).contains(
+                            String.valueOf(operationScreenValue.charAt(operationScreenValue.length() - 1)));
+
+                    if(lastIsOperand)
+                    {
+                        return;
+                    }
                 }
 
                 operationScreenValue += text;
