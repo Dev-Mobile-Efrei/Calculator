@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Calculator-Lab2</string>
+    <string name="textBtnEquals">=</string>
+    <string name="textBtnPlus">+</string>
+    <string name="textBtnMultiply">*</string>
+    <string name="textBtnDivide">/</string>
+    <string name="textBtnMinus">-</string>
+    <string name="textBtnOne">1</string>
+    <string name="textBtnTow">2</string>
+    <string name="textBtnThree">3</string>
+    <string name="textBtnFour">4</string>
+    <string name="textBtnFive">5</string>
+    <string name="textBtnSix">6</string>
+    <string name="textBtnSeven">7</string>
+    <string name="textBtnHeight">8</string>
+    <string name="textBtnNine">9</string>
+    <string name="textBtnZero">0</string>
+</resources>
