@@ -26,26 +26,37 @@ public class MainActivity extends AppCompatActivity {
         {
             Button viewAsButton = (Button) view;
             String text = viewAsButton.getText().toString();
+            String lastValue = "";
+            if(operationScreenValue.length() > 0)
+            {
+                lastValue = String.valueOf(operationScreenValue.charAt(operationScreenValue.length() - 1));
+            }
 
             String equalValue = getResources().getString(R.string.textBtnEquals);
             if(text.equals(equalValue))
             {
+                if(isOperand(lastValue))
+                {
+                    return;
+                }
                 Context context = Context.enter(); //
                 context.setOptimizationLevel(-1); // this is required[2]
                 Scriptable scope = context.initStandardObjects();
                 Object result = context.evaluateString(scope, operationScreenValue, "<cmd>", 1, null);
                 resultScreenValue = result.toString();
             }else{
-                String[] operands = {getResources().getString(R.string.textBtnDivide)
-                        , getResources().getString(R.string.textBtnMinus)
-                        , getResources().getString(R.string.textBtnPlus)
-                        , getResources().getString(R.string.textBtnMultiply)};
 
-                boolean isOperand = Arrays.asList(operands).contains(text);
+                boolean isOperand = isOperand(text);
 
                 if(isOperand)
                 {
-                    boolean
+                    boolean lastIsOperand = isOperand(
+                            lastValue);
+
+                    if(lastIsOperand)
+                    {
+                        return;
+                    }
                 }
 
                 operationScreenValue += text;
@@ -53,5 +64,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public boolean isOperand(String value)
+    {
+        String[] operands = {getResources().getString(R.string.textBtnDivide)
+                , getResources().getString(R.string.textBtnMinus)
+                , getResources().getString(R.string.textBtnPlus)
+                , getResources().getString(R.string.textBtnMultiply)};
+
+        return Arrays.asList(operands).contains(value);
     }
 }
