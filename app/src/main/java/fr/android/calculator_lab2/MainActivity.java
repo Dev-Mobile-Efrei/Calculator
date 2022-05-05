@@ -58,10 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isOperand)
                 {
-                    boolean lastIsOperand = isOperand(
-                            lastValue);
+                    boolean lastIsOperand = isOperand(lastValue);
 
-                    if(lastIsOperand)
+                    boolean operandIsTheFirstValue = operationScreenValue.isEmpty();
+
+                    boolean isInIncorrectSituation = lastIsOperand || operandIsTheFirstValue;
+
+                    if(isInIncorrectSituation)
                     {
                         return;
                     }
