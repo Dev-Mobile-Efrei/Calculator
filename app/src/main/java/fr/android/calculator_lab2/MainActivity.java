@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     if(lastIsOperand)
                     {
                         String operationWithoutLast = operationScreenValue.substring(0, operationScreenValue.length() - 1);
-                        operationScreenValue = operationWithoutLast + text;
-                        return;
+                        operationScreenValue = operationWithoutLast;
+
                     }
 
                     if(operandIsTheFirstValue)
