@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
             String equalValue = getResources().getString(R.string.textBtnEquals);
             if(text.equals(equalValue))
             {
-                if(isOperand(lastValue))
+                boolean isInvalid = isOperand(lastValue) || this.operationScreenValue.isEmpty();
+                if(isInvalid)
                 {
                     return;
                 }
@@ -62,9 +63,14 @@ public class MainActivity extends AppCompatActivity {
 
                     boolean operandIsTheFirstValue = operationScreenValue.isEmpty();
 
-                    boolean isInIncorrectSituation = lastIsOperand || operandIsTheFirstValue;
+                    if(lastIsOperand)
+                    {
+                        String operationWithoutLast = operationScreenValue.substring(0, operationScreenValue.length() - 1);
+                        operationScreenValue = operationWithoutLast + text;
+                        return;
+                    }
 
-                    if(isInIncorrectSituation)
+                    if(operandIsTheFirstValue)
                     {
                         return;
                     }
