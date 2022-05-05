@@ -15,4 +15,5 @@
     <string name="textBtnEight">8</string>
     <string name="textBtnNine">9</string>
     <string name="textBtnZero">0</string>
+    <string name="string_error">Error</string>
 </resources>

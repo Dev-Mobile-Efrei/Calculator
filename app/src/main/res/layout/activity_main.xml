@@ -13,26 +13,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:id="@+id/editTextTextPersonName"
-                android:layout_marginHorizontal="10dp"
-                android:layout_weight="1" android:textAlignment="viewStart" android:text="test"
-                android:textIsSelectable="false" android:textSize="20sp" android:textStyle="bold"
-                android:gravity="center" style="@android:style/Widget.TextView" android:lines="1" android:maxLines="1"
-                android:minLines="1" android:singleLine="true"/>
+                android:id="@+id/editTextOperation"
+                android:background="@drawable/textview_purpleborder"
+                android:layout_weight="1"
+                android:textIsSelectable="false" android:textSize="24sp" android:textStyle="bold"
+                android:gravity="center" style="@android:style/Widget.TextView" android:lines="1"
+                android:maxLines="1"
+                android:minLines="1" android:singleLine="true" tools:ignore="NestedWeights"
+                android:text="1+1"
+                android:layout_marginStart="10dp" android:layout_marginEnd="5dp"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:id="@+id/editTextNumberDecimal2" android:layout_weight="2"
+                android:background="@drawable/textview_purpleborder"
+                android:id="@+id/editTextResult" android:layout_weight="2"
                 tools:ignore="Autofill,InefficientWeight,LabelFor,NestedWeights,SpeakableTextPresentCheck,TouchTargetSizeCheck"
                 android:autoSizeTextType="none" android:textAlignment="center" android:gravity="center"
                 style="@android:style/Widget.Material.TextView" android:lines="1" android:minLines="1"
-                android:maxLines="1" android:singleLine="true"/>
+                android:maxLines="1" android:singleLine="true" android:text="2"
+                android:textIsSelectable="false" android:textSize="24sp" android:textStyle="bold"
+                android:layout_marginStart="5dp" android:layout_marginEnd="10dp"/>
     </LinearLayout>
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" android:gravity="center">
+            android:layout_weight="1" android:gravity="center" android:layout_marginBottom="50dp">
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -55,7 +61,8 @@
                             android:id="@+id/button6" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp"
                             style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                     <Button
                             android:text="@string/textBtnEight"
                             android:layout_width="wrap_content"
@@ -63,7 +70,8 @@
                             android:id="@+id/button8" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp"
                             style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                     <Button
                             android:text="@string/textBtnNine"
                             android:layout_width="wrap_content"
@@ -71,7 +79,8 @@
                             android:id="@+id/button15" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp"
                             style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                     <Button
                             android:text="@string/textBtnPlus"
                             android:layout_width="wrap_content"
@@ -79,7 +88,8 @@
                             android:id="@+id/button7" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp"
                             style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                 </LinearLayout>
                 <LinearLayout
                         android:orientation="horizontal"
@@ -90,25 +100,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent" android:id="@+id/button3" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp" style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                     <Button
                             android:text="@string/textBtnFive"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent" android:id="@+id/button4" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp" style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                     <Button
                             android:text="@string/textBtnSix"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent" android:id="@+id/button16" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp" style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                     <Button
                             android:text="@string/textBtnMinus"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent" android:id="@+id/button5" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp" style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                 </LinearLayout>
                 <LinearLayout
                         android:orientation="horizontal"
@@ -119,26 +133,30 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent" android:id="@+id/button9" android:layout_weight="1"
                             style="@android:style/Widget.Material.Button" android:layout_marginHorizontal="10dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                     <Button
                             android:text="@string/textBtnTwo"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent" android:id="@+id/button10" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp"
                             style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                     <Button
                             android:text="@string/textBtnThree"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent" android:id="@+id/button17" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp" style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                     <Button
                             android:text="@string/textBtnMultiply"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent" android:id="@+id/button11" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp" style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                 </LinearLayout>
                 <LinearLayout
                         android:orientation="horizontal"
@@ -149,13 +167,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent" android:id="@+id/button13" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp" style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                     <Button
                             android:text="@string/textBtnDivide"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent" android:id="@+id/button12" android:layout_weight="1"
                             android:layout_marginHorizontal="10dp" style="@android:style/Widget.Material.Button"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:onClick="onClick"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -164,6 +184,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/button2" android:layout_weight="4"
                 android:layout_marginHorizontal="10dp" style="@android:style/Widget.Material.Button"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:onClick="onClick"/>
     </LinearLayout>
 </LinearLayout>

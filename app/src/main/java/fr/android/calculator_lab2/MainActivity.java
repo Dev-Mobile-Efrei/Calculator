@@ -1,8 +1,10 @@
 package fr.android.calculator_lab2;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
             Button viewAsButton = (Button) view;
             String text = viewAsButton.getText().toString();
             String lastValue = "";
+
+            TextView editTextOperation = findViewById(R.id.editTextOperation);
+            TextView editTextResult = findViewById(R.id.editTextResult);
+
             if(operationScreenValue.length() > 0)
             {
                 lastValue = String.valueOf(operationScreenValue.charAt(operationScreenValue.length() - 1));
@@ -39,12 +45,14 @@ public class MainActivity extends AppCompatActivity {
                 {
                     return;
                 }
+
                 Context context = Context.enter(); //
                 context.setOptimizationLevel(-1); // this is required[2]
                 Scriptable scope = context.initStandardObjects();
                 Object result = context.evaluateString(scope, operationScreenValue, "<cmd>", 1, null);
                 resultScreenValue = result.toString();
-            }else{
+                operationScreenValue = "";
+            } else {
 
                 boolean isOperand = isOperand(text);
 
@@ -62,8 +70,18 @@ public class MainActivity extends AppCompatActivity {
                 operationScreenValue += text;
             }
 
-        }
+            if (resultScreenValue.contains("Infinity"))
+            {
+                resultScreenValue = "";
+                editTextResult.setBackground(getResources().getDrawable(R.drawable.textview_redborder, null));
+                editTextResult.setText(R.string.string_error);
+                return;
+            }
 
+            editTextResult.setBackground(getResources().getDrawable(R.drawable.textview_purpleborder, null));
+            editTextOperation.setText(operationScreenValue);
+            editTextResult.setText(resultScreenValue);
+        }
     }
 
     public boolean isOperand(String value)
