@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
             TextView editTextOperation = findViewById(R.id.editTextOperation);
             TextView editTextResult = findViewById(R.id.editTextResult);
+            Button btnEquals = findViewById(R.id.btnEquals);
 
             if(operationScreenValue.length() > 0)
             {
@@ -85,6 +86,13 @@ public class MainActivity extends AppCompatActivity {
                 editTextResult.setText(R.string.string_error);
                 return;
             }
+
+            if(operationScreenValue.length() > 0)
+            {
+                lastValue = String.valueOf(operationScreenValue.charAt(operationScreenValue.length() - 1));
+            }
+
+            btnEquals.setEnabled(!operationScreenValue.isEmpty() && !isOperand(lastValue));
 
             editTextResult.setBackground(getResources().getDrawable(R.drawable.textview_purpleborder, null));
             editTextOperation.setText(operationScreenValue);

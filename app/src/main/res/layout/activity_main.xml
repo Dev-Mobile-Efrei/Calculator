@@ -182,7 +182,7 @@
         <Button
                 android:text="@string/textBtnEquals"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:id="@+id/button2" android:layout_weight="4"
+                android:layout_height="match_parent" android:id="@+id/btnEquals" android:layout_weight="4"
                 android:layout_marginHorizontal="10dp" style="@android:style/Widget.Material.Button"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:onClick="onClick"/>
     </LinearLayout>
