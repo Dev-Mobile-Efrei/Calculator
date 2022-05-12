@@ -26,18 +26,15 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         if(view instanceof Button)
         {
-            Button viewAsButton = (Button) view;
-            String text = viewAsButton.getText().toString();
-            String lastValue = "";
+            final Button viewAsButton = (Button) view;
+            final String text = viewAsButton.getText().toString();
+            final String lastValue = operationScreenValue.isEmpty()
+                    ? ""
+                    : operationScreenValue.substring(operationScreenValue.length() - 1);
 
-            TextView editTextOperation = findViewById(R.id.editTextOperation);
-            TextView editTextResult = findViewById(R.id.editTextResult);
-            Button btnEquals = findViewById(R.id.btnEquals);
-
-            if(operationScreenValue.length() > 0)
-            {
-                lastValue = String.valueOf(operationScreenValue.charAt(operationScreenValue.length() - 1));
-            }
+            final TextView editTextOperation = findViewById(R.id.editTextOperation);
+            final TextView editTextResult = findViewById(R.id.editTextResult);
+            final Button btnEquals = findViewById(R.id.btnEquals);
 
             String equalValue = getResources().getString(R.string.textBtnEquals);
             if(text.equals(equalValue))
@@ -87,12 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            if(operationScreenValue.length() > 0)
-            {
-                lastValue = String.valueOf(operationScreenValue.charAt(operationScreenValue.length() - 1));
-            }
-
-            btnEquals.setEnabled(!operationScreenValue.isEmpty() && !isOperand(lastValue));
+            btnEquals.setEnabled(!operationScreenValue.isEmpty() && !isOperand(text));
 
             editTextResult.setBackground(getResources().getDrawable(R.drawable.textview_purpleborder, null));
             editTextOperation.setText(operationScreenValue);
@@ -102,10 +94,10 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean isOperand(String value)
     {
-        String[] operands = {getResources().getString(R.string.textBtnDivide)
+        String[] operands = { getResources().getString(R.string.textBtnDivide)
                 , getResources().getString(R.string.textBtnMinus)
                 , getResources().getString(R.string.textBtnPlus)
-                , getResources().getString(R.string.textBtnMultiply)};
+                , getResources().getString(R.string.textBtnMultiply) };
 
         return Arrays.asList(operands).contains(value);
     }
