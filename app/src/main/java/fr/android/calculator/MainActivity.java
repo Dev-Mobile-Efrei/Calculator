@@ -2,7 +2,9 @@ package fr.android.calculator;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import org.jetbrains.annotations.NotNull;
@@ -16,6 +18,8 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
     private final DecimalFormat resultFormat = new DecimalFormat("##.##");
+
+    public Button btnEquals = null;
 
     public String operation = "";
 
@@ -40,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
             TextView editTextOperation = this.findViewById(R.id.editTextOperation);
             TextView editTextResult = this.findViewById(R.id.editTextResult);
-            Button btnEquals = this.findViewById(R.id.btnEquals);
 
             String equalValue = this.getResources().getString(R.string.textBtnEquals);
             if (text.equals(equalValue)) {
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 this.operation += text;
             }
 
-            btnEquals.setEnabled(!this.operation.isEmpty() && !this.isOperand(text));
+            this.btnEquals.setEnabled(!this.operation.isEmpty() && !this.isOperand(text));
 
             editTextResult.setBackground(this.getResources().getDrawable(R.drawable.textview_purple_border, null));
             editTextOperation.setText(this.operation);
@@ -88,6 +91,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
+
+        LinearLayout.LayoutParams layoutParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 4);
+        layoutParam.setMargins(5, 12, 5, 12);
+
+        this.btnEquals = new Button(this);
+        this.btnEquals.setText(R.string.textBtnEquals);
+        this.btnEquals.setTextAppearance(R.style.TextAppearance_AppCompat_Display1);
+        this.btnEquals.setOnClickListener(this::onClick);
+        this.btnEquals.setBackgroundColor(this.getResources().getColor(R.color.purple_200, null));
+        this.btnEquals.setTextColor(this.getResources().getColor(R.color.black, null));
+        this.btnEquals.setEnabled(false);
+
+        LinearLayout linearLayout = this.findViewById(R.id.layoutButtons);
+        linearLayout.addView(this.btnEquals, layoutParam);
     }
 
     /**
