@@ -14,24 +14,23 @@
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:id="@+id/editTextOperation"
-                android:background="@drawable/textview_purpleborder"
+                android:background="@drawable/textview_purple_border"
                 android:layout_weight="1"
                 android:textIsSelectable="false" android:textSize="24sp" android:textStyle="bold"
                 android:gravity="center" style="@android:style/Widget.TextView" android:lines="1"
                 android:maxLines="1"
                 android:minLines="1" android:singleLine="true" tools:ignore="NestedWeights"
-                android:text="1+1"
                 android:layout_marginStart="10dp" android:layout_marginEnd="5dp"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:background="@drawable/textview_purpleborder"
+                android:background="@drawable/textview_purple_border"
                 android:id="@+id/editTextResult" android:layout_weight="2"
                 tools:ignore="Autofill,InefficientWeight,LabelFor,NestedWeights,SpeakableTextPresentCheck,TouchTargetSizeCheck"
                 android:autoSizeTextType="none" android:textAlignment="center" android:gravity="center"
                 style="@android:style/Widget.Material.TextView" android:lines="1" android:minLines="1"
-                android:maxLines="1" android:singleLine="true" android:text="2"
+                android:maxLines="1" android:singleLine="true"
                 android:textIsSelectable="false" android:textSize="24sp" android:textStyle="bold"
                 android:layout_marginStart="5dp" android:layout_marginEnd="10dp"/>
     </LinearLayout>
