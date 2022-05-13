@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 this.operation += text;
             }
 
-            this.btnEquals.setEnabled(!this.operation.isEmpty() && !this.isOperand(text));
+            this.setEnabledBtnEquals(!this.operation.isEmpty() && !this.isOperand(text));
 
             editTextResult.setBackground(this.getResources().getDrawable(R.drawable.textview_purple_border, null));
             editTextOperation.setText(this.operation);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         this.btnEquals.setText(R.string.textBtnEquals);
         this.btnEquals.setTextAppearance(R.style.TextAppearance_AppCompat_Display1);
         this.btnEquals.setOnClickListener(this::onClick);
-        this.btnEquals.setBackgroundColor(this.getResources().getColor(R.color.purple_200, null));
+        this.btnEquals.setBackgroundColor(this.getResources().getColor(R.color.gray, null));
         this.btnEquals.setTextColor(this.getResources().getColor(R.color.black, null));
         this.btnEquals.setEnabled(false);
 
@@ -134,6 +134,16 @@ public class MainActivity extends AppCompatActivity {
             throw new ArithmeticException("Unable to divide by zero");
         } else {
             return Double.parseDouble(result);
+        }
+    }
+
+    private void setEnabledBtnEquals(boolean enabled) {
+        if (enabled) {
+            this.btnEquals.setEnabled(true);
+            this.btnEquals.setBackgroundColor(this.getResources().getColor(R.color.purple_200, null));
+        } else {
+            this.btnEquals.setEnabled(false);
+            this.btnEquals.setBackgroundColor(this.getResources().getColor(R.color.gray, null));
         }
     }
 }
