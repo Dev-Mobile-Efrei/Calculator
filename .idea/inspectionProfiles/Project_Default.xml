@@ -2827,7 +2827,7 @@
     </inspection_tool>
     <inspection_tool class="StreamToLoop" enabled="true" level="INFORMATION" enabled_by_default="true" />
     <inspection_tool class="StringBufferField" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="StringBufferMustHaveInitialCapacity" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="StringBufferMustHaveInitialCapacity" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="StringBufferReplaceableByString" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="StringBufferReplaceableByStringBuilder" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="StringBufferToStringInConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -2877,6 +2877,8 @@
           <option value="unchecked" />
           <option value="ClassHasNoToStringMethod" />
           <option value="ClassIndependentOfModule" />
+          <option value="StaticCollection" />
+          <option value="SuspiciousListRemoveInLoop" />
         </list>
       </option>
     </inspection_tool>
