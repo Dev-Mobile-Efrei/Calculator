@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(this.operation + " and " + operand);
                 char operandAtChar = operand.charAt(0);
 
-                String values[] = this.operation.split("[^0-9]");
+                String[] values = this.operation.split("[^0-9]");
 
                 double leftValue = Double.parseDouble(values[0]);
                 double rightValue = Double.parseDouble(values[1]);
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Thread thread = new Thread(() -> {
                     try {
-                        Socket socket = new Socket("10.0.2.2", 9876);
+                        Socket socket = new Socket(this.getResources().getString(R.string.ipAddress), this.getResources().getInteger(R.integer.port));
                         DataOutputStream outputStream;
                         DataInputStream inputStream;
                         outputStream = new DataOutputStream(socket.getOutputStream());
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(this.operation + " and " + operand);
                 char operandAtChar = operand.charAt(0);
 
-                String values[] = this.operation.split("[^0-9]");
+                String[] values = this.operation.split("[^0-9]");
 
                 double leftValue = Double.parseDouble(values[0]);
                 double rightValue = Double.parseDouble(values[1]);
