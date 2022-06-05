@@ -7,4 +7,7 @@
     <item android:id="@+id/lastResult"
             android:title="@string/last_result" >
     </item>
+    <item android:id="@+id/inputCounter"
+            android:title="@string/inputCounter_text" >
+    </item>
 </menu>

@@ -64,6 +64,10 @@ public class LastResultActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             this.startActivity(intent);
         }
+        if(item.getItemId() == R.id.inputCounter){
+            Intent intent = new Intent(this, TextCounterActivity.class);
+            this.startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 }
