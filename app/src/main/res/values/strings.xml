@@ -17,4 +17,6 @@
     <string name="textBtnZero">0</string>
     <string name="string_error">Error</string>
     <string name="ipAddress">10.0.2.2</string>
+    <string name="last_result">Dernère opération</string>
+    <string name="calculator">Calculatrice</string>
 </resources>

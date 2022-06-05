@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/calculator"
+            android:title="@string/calculator" >
+
+    </item>
+    <item android:id="@+id/lastResult"
+            android:title="@string/last_result" >
+    </item>
+</menu>

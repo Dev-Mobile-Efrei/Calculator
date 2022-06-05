@@ -1,9 +1,13 @@
 package fr.android.calculator;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,6 +28,10 @@ import java.util.Arrays;
 @SuppressWarnings("ClassIndependentOfModule")
 public class MainActivity extends AppCompatActivity {
 
+    public static final String LAST_OPERATION_KEY = "last_operation";
+
+    public static final String LAST_RESULT_KEY = "last_result";
+
     protected final DecimalFormat resultFormat = new DecimalFormat("##.##");
 
     protected String operation = "";
@@ -33,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
     private Button btnEquals = null;
 
     private Handler handler;
+
+    public static String lastOperation;
+
+    public static String lastResult;
 
     public boolean isOperand(String value) {
         String[] operands = { this.getResources().getString(R.string.textBtnDivide),
@@ -49,6 +61,27 @@ public class MainActivity extends AppCompatActivity {
         //this.onClickAsync(view);
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = this.getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == R.id.calculator){
+            Intent intent = new Intent(this, MainActivity.class);
+            this.startActivity(intent);
+        }
+        if(item.getItemId() == R.id.lastResult){
+            Intent intent = new Intent(this, LastResultActivity.class);
+            intent.putExtra(LAST_RESULT_KEY, lastResult);
+            intent.putExtra(LAST_OPERATION_KEY, lastOperation);
+            this.startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
     /**
      * @param operationToEvaluate operation to be evaluated
      *
@@ -168,7 +201,10 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         System.out.println(Arrays.toString(result));
                         this.handler.post(() -> this.resultStr = this.resultFormat.format(result[0]));
+                        lastOperation = this.operation;
+                        lastResult = result[0]  + "";
                         this.handler.post(() -> this.operation = "");
+
                     } catch (IllegalArgumentException | ArithmeticException ignored) {
                         this.handler.post(() -> this.resultStr = "");
                         this.handler.post(() -> editTextResult.setBackground(this.getResources().getDrawable(R.drawable.textview_red_border, null)));
