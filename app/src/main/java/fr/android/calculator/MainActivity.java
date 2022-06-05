@@ -14,6 +14,10 @@ import org.jetbrains.annotations.NotNull;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 
@@ -41,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         // this.onClickProcedural(view);
-        // this.onClickHandler(view);
-        this.onClickAsync(view);
+        this.onClickHandler(view);
+        //this.onClickAsync(view);
     }
 
     /**
@@ -124,19 +128,63 @@ public class MainActivity extends AppCompatActivity {
 
             String equalValue = this.getResources().getString(R.string.textBtnEquals);
             if (text.equals(equalValue)) {
-                try {
-                    double result = this.evaluateOperation(this.operation);
+                this.btnEquals.setEnabled(false);
+                double[] result = new double[1];
 
-                    this.handler.post(() -> this.resultStr = this.resultFormat.format(result));
-                    this.handler.post(() -> this.operation = "");
-                } catch (IllegalArgumentException | ArithmeticException ignored) {
-                    this.handler.post(() -> this.resultStr = "");
+                String operand = this.operation.replaceAll("[0-9]", "");
+                System.out.println(this.operation + " and " + operand);
+                char operandAtChar = operand.charAt(0);
+
+                String values[] = this.operation.split("[^0-9]");
+
+                double leftValue = Double.parseDouble(values[0]);
+                double rightValue = Double.parseDouble(values[1]);
+
+
+                this.operation.split("[^0-9]");
+
+                Thread thread = new Thread(() -> {
+                    try {
+                        Socket socket = new Socket("10.0.2.2", 9876);
+                        DataOutputStream outputStream;
+                        DataInputStream inputStream;
+                        outputStream = new DataOutputStream(socket.getOutputStream());
+                        inputStream = new DataInputStream(socket.getInputStream());
+
+                        outputStream.writeDouble(leftValue);
+                        outputStream.writeChar(operandAtChar);
+                        outputStream.writeDouble(rightValue);
+                        outputStream.flush();
+
+                        result[0] = inputStream.readDouble();
+
+                        inputStream.close();
+                        outputStream.close();
+                        socket.close();
+                    } catch (IOException ignored) {
+                        System.err.println(ignored);
+                    }
+
+                    try {
+                        System.out.println(Arrays.toString(result));
+                        this.handler.post(() -> this.resultStr = this.resultFormat.format(result[0]));
+                        this.handler.post(() -> this.operation = "");
+                    } catch (IllegalArgumentException | ArithmeticException ignored) {
+                        this.handler.post(() -> this.resultStr = "");
+                        this.handler.post(() -> editTextResult.setBackground(this.getResources().getDrawable(R.drawable.textview_red_border, null)));
+                        this.handler.post(() -> editTextResult.setText(R.string.string_error));
+                    }
+
+                    this.handler.post(() -> this.setEnabledBtnEquals(!this.operation.isEmpty() && !this.isOperand(text)));
+
                     this.handler.post(() -> editTextResult.setBackground(this.getResources()
-                                                                             .getDrawable(R.drawable.textview_red_border, null)));
-                    this.handler.post(() -> editTextResult.setText(R.string.string_error));
+                                                                             .getDrawable(R.drawable.textview_purple_border, null)));
+                    this.handler.post(() -> editTextOperation.setText(this.operation));
+                    this.handler.post(() -> editTextResult.setText(this.resultStr));
+                });
+                thread.start();
 
-                    return;
-                }
+                return;
             } else {
                 boolean isOperand = this.isOperand(text);
 
@@ -180,18 +228,52 @@ public class MainActivity extends AppCompatActivity {
 
             String equalValue = this.getResources().getString(R.string.textBtnEquals);
             if (text.equals(equalValue)) {
-                try {
-                    double result = this.evaluateOperation(this.operation);
 
-                    this.resultStr = this.resultFormat.format(result);
-                    this.operation = "";
-                } catch (IllegalArgumentException | ArithmeticException ignored) {
-                    this.resultStr = "";
-                    editTextResult.setBackground(this.getResources().getDrawable(R.drawable.textview_red_border, null));
-                    editTextResult.setText(R.string.string_error);
+                this.btnEquals.setEnabled(false);
+                double[] result = new double[1];
 
-                    return;
-                }
+                String operand = this.operation.replaceAll("[0-9]", "");
+                System.out.println(this.operation + " and " + operand);
+                char operandAtChar = operand.charAt(0);
+
+                String values[] = this.operation.split("[^0-9]");
+
+                double leftValue = Double.parseDouble(values[0]);
+                double rightValue = Double.parseDouble(values[1]);
+
+
+                this.operation.split("[^0-9]");
+
+                Thread thread = new Thread(() -> {
+                    try {
+                        Socket socket = new Socket("10.0.2.2", 9876);
+                        DataOutputStream outputStream;
+                        DataInputStream inputStream;
+                        outputStream = new DataOutputStream(socket.getOutputStream());
+                        inputStream = new DataInputStream(socket.getInputStream());
+
+                        outputStream.writeDouble(leftValue);
+                        outputStream.writeChar(operandAtChar);
+                        outputStream.writeDouble(rightValue);
+                        outputStream.flush();
+
+                        result[0] = inputStream.readDouble();
+
+                        inputStream.close();
+                        outputStream.close();
+                        socket.close();
+
+                        this.resultStr = this.resultFormat.format(result[0]);
+                        this.operation = "";
+                    } catch (IOException ignored) {
+                        System.err.println(ignored);
+                    } catch (IllegalArgumentException | ArithmeticException ignored) {
+                        this.resultStr = "";
+                        editTextResult.setBackground(this.getResources().getDrawable(R.drawable.textview_red_border, null));
+                        editTextResult.setText(R.string.string_error);
+                    }
+                });
+
             } else {
                 boolean isOperand = this.isOperand(text);
 
